@@ -8,7 +8,7 @@ import enchant
 # create the objects from the imported modules
 
 # reddit api login
-reddit = praw.Reddit(client_id='mI_9NuNJaoQvoA',
+reddit = praw.Reddit(client_id='	R5ktIcc5LWFwXPsRiSWCKd5IAkM',
                      client_secret='1tvX-iboQrU7afIlg-nU5Gne9ks',
                      username='iamwordbot',
                      password='iamwordbot',
