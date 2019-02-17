@@ -1,47 +1,18 @@
 
-# bigwordbot
+#EconomyBot
 
 import praw
-from PyDictionary import PyDictionary
-import enchant
 
-# create the objects from the imported modules
-
-# reddit api login
 reddit = praw.Reddit(client_id='Ag7g4RvOeba9OA',
-                     client_secret='2oHrK2VDZWeJSX1kXDuqp3x6BLg',
-                     username='iamwordbot',
-                     password='iamwordbot',
-                     user_agent='wordbot by /u/jfishersolutions')
-                    
-# dictionary and word check
-dictionary = PyDictionary()
-d = enchant.Dict("en_US")
+                 client_secret='2oHrK2VDZWeJSX1kXDuqp3x6BLg',
+                 user_agent='Economy Bot',
+                 username='EconomyBot',
+                 password='kit1016ty')
 
-# check if the word is real
-def isWord(word):
-    return d.check(word)
+#What Subs this will work on
+subreddit = reddit.subreddit('karmatransactions')
 
-# the subreddits you want your bot to live on
-subreddit = reddit.subreddit('KarmaTransactions')
+new_karmatransactions = subreddit.new()
 
-# phrase to activate the bot
-keyphrase = '!wordbot '
-
-# look for phrase and reply appropriately
-for comment in subreddit.stream.comments():
-    if keyphrase in comment.body:
-        word = comment.body.replace(keyphrase, '')
-        try:
-            if isWord(word):
-                # get meaning as object, get the index of a sentence and reply it
-                words = dictionary.meaning(word)
-                reply = [item[0] for item in words.values()]
-                comment.reply(word + ': '  + reply[0])
-                print('posted')
-            else:
-                reply = 'This is not a word.'
-                comment.reply(reply)
-                print('posted')
-        except:
-            print('to frequent')
+for submission in new_karmatransactions:
+    print(submission.title)
